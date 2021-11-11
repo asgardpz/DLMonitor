@@ -1,0 +1,231 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DLMonitor"
+        xmlns:ControlLib="clr-namespace:ControlLib;assembly=NumericUpDown" x:Class="DLMonitor.Win"
+        mc:Ignorable="d"
+        Title="溫濕度計警訊系統" Height="768" Width="1024" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+
+    <Grid>
+        <GroupBox Header="溫度" HorizontalAlignment="Left" Height="64" Margin="149,72,0,0" VerticalAlignment="Top" Width="250" BorderBrush="Black" FontSize="18">
+            <Canvas >
+                <Label Content="攝氏" Canvas.Left="3" Canvas.Top="3" FontSize="12"/>
+                <Label Content="華氏" Canvas.Left="123" Canvas.Top="3" FontSize="12"/>
+                <TextBox x:Name="TB_Celsius_Read" Height="23" Canvas.Left="50" TextWrapping="Wrap" Text="" Canvas.Top="3" Width="40" IsEnabled="False" FontSize="12" Background="LightYellow"/>
+                <TextBox x:Name="TB_Fahrenheit_Read" Height="23" Canvas.Left="165" TextWrapping="Wrap" Text="" Canvas.Top="3" Width="40" IsEnabled="False" FontSize="12" Background="LightYellow" />
+                <Image Height="27" Canvas.Left="90" Canvas.Top="2" Width="30" Source="Image/Celsius.png"/>
+                <Image Height="29" Canvas.Left="210" Canvas.Top="2" Width="30" Source="Image/Fahrenheit.png"/>
+            </Canvas>
+        </GroupBox>
+        <GroupBox Header="濕度" HorizontalAlignment="Left" Height="63" Margin="8,72,0,0" VerticalAlignment="Top" Width="137" BorderBrush="Black" FontSize="18">
+            <Canvas Margin="0,0,2.4,-0.4">
+                <TextBox x:Name="TB_Humidity_Read" Height="23" Canvas.Left="50" TextWrapping="Wrap" Text="" Canvas.Top="3" Width="40" IsEnabled="False" FontSize="12" Background="LightYellow"/>
+                <Label Content="濕度" Canvas.Left="6" Canvas.Top="3" FontSize="12"/>
+                <Image Height="29" Canvas.Left="95" Canvas.Top="2" Width="30" Source="Image/Humidity.png"/>
+            </Canvas>
+        </GroupBox>
+        <GroupBox Header="設定" HorizontalAlignment="Left" Height="352" Margin="10,139,0,0" VerticalAlignment="Top" Width="982" BorderBrush="Black" FontSize="18">
+            <Canvas>
+                <GroupBox Header="設備" HorizontalAlignment="Left" Height="115" VerticalAlignment="Top" Width="292" BorderBrush="Black" FontSize="18" Canvas.Left="9" Canvas.Top="70">
+                    <Canvas Margin="0,0,4.6,0.2" >
+                        <TextBox x:Name="TB_NAME" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Canvas.Left="61" Canvas.Top="10"/>
+                        <Label Content="名稱" Canvas.Left="5" Canvas.Top="10" FontSize="12" Width="44"/>
+                        <Label Content="IP" Canvas.Left="9" Canvas.Top="51" FontSize="12" Width="34"/>
+                        <ControlLib:NumericUpDown x:Name="NUP_IP1" HorizontalAlignment="Center" MaxValue="256" VerticalAlignment="Center" Increment="1" FontSize="12" Width="38" MinValue="0" Canvas.Left="62" Canvas.Top="55" Height="22" HorizontalContentAlignment="Center" />
+                        <ControlLib:NumericUpDown x:Name="NUP_IP2" HorizontalAlignment="Center" MaxValue="256" VerticalAlignment="Center" Increment="1" FontSize="12" Width="38" MinValue="0" Canvas.Left="120" Canvas.Top="55" Height="22" HorizontalContentAlignment="Center" />
+                        <ControlLib:NumericUpDown x:Name="NUP_IP3" HorizontalAlignment="Center" MaxValue="256" VerticalAlignment="Center" Increment="1" FontSize="12" Width="38" MinValue="0" Canvas.Left="172" Canvas.Top="55" Height="22" HorizontalContentAlignment="Center" />
+                        <ControlLib:NumericUpDown x:Name="NUP_IP4" HorizontalAlignment="Center" MaxValue="256" VerticalAlignment="Center" Increment="1" FontSize="12" Width="38" MinValue="0" Canvas.Left="222" Canvas.Top="55" Height="22" HorizontalContentAlignment="Center" />
+                        <Label Content="." Canvas.Left="102" Canvas.Top="54" FontSize="12" Height="26"/>
+                        <Label Content="." Canvas.Left="157" Canvas.Top="54" FontSize="12" Height="26"/>
+                        <Label Content="." Canvas.Left="209" Canvas.Top="54" FontSize="12" Height="26"/>
+                    </Canvas>
+                </GroupBox>
+                <GroupBox Header="寄件帳密" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="346" BorderBrush="#FF0E0D0D" FontSize="18" Canvas.Left="317" Canvas.Top="204">
+                    <Canvas>
+                        <Image Height="33" Canvas.Left="6" Canvas.Top="10" Width="38" Source="Image/User.png"/>
+                        <Image Height="33" Canvas.Left="12" Canvas.Top="46" Width="30" Source="Image/Pass.png"/>
+                        <TextBox x:Name="TB_User" Height="23"  Width="99" FontSize="12" Canvas.Top="10" Canvas.Left="55"/>
+                        <PasswordBox x:Name="PB_Pass" Canvas.Left="55" Canvas.Top="51" Height="24"  Width="181" FontSize="12"/>
+                        <Label Content="@ibase.com.tw" Canvas.Left="150" Canvas.Top="10" Foreground="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" FontSize="12"/>
+                        <Button x:Name="Btn_Mail" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="40" BorderBrush="{x:Null}" Click="Btn_Mail_Click" RenderTransformOrigin="4.433,1.085" Canvas.Left="269" Canvas.Top="6">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Image/mail.png"/>
+                            </Button.Background>
+                        </Button>
+                        <Label Content="寄信測試" Canvas.Left="258" Canvas.Top="50" RenderTransformOrigin="2.911,0.695" FontSize="14"/>
+                    </Canvas>
+                </GroupBox>
+                <GroupBox Header="溫濕度計警示設定" HorizontalAlignment="Left" Height="127" VerticalAlignment="Top" Width="291" FontSize="18" BorderBrush="#FF030303" Canvas.Left="10" Canvas.Top="186">
+                    <Canvas>
+                        <Label Content="溫度" Canvas.Left="12" Canvas.Top="37" FontSize="12"/>
+                        <Label Content="濕度" Canvas.Left="13" Canvas.Top="10" FontSize="12"/>
+                        <ComboBox x:Name="CB_Hour" Canvas.Left="79" Canvas.Top="65" Width="42" Height="22" SelectedIndex="0" FontSize="12" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="2.438,0.827"/>
+                        <Label Content="儲存間隔" Canvas.Left="13" Canvas.Top="65" FontSize="12" Width="58"/>
+                        <ControlLib:NumericUpDown x:Name="NUP_Celsius1" HorizontalAlignment="Center" MaxValue="999" VerticalAlignment="Center" Increment="1" FontSize="12" Width="38" Canvas.Left="79" Canvas.Top="37" Height="22"/>
+                        <ControlLib:NumericUpDown x:Name="NUP_Celsius2" HorizontalAlignment="Center" MaxValue="99" VerticalAlignment="Center" Increment="1" FontSize="12" Width="38" MinValue="0" Canvas.Left="153" Canvas.Top="37" Height="22"/>
+                        <ControlLib:NumericUpDown x:Name="NUP_Humidity1" HorizontalAlignment="Center" MaxValue="999" VerticalAlignment="Center" Increment="1" FontSize="12" Width="38" MinValue="0" Canvas.Left="79" Canvas.Top="11" Height="22"/>
+                        <ControlLib:NumericUpDown x:Name="NUP_Humidity2" HorizontalAlignment="Center" MaxValue="99" VerticalAlignment="Center" Increment="1" FontSize="12" Width="38" MinValue="0" Canvas.Left="153" Canvas.Top="11" Height="22"/>
+                        <Label Content="從" Canvas.Left="50" Canvas.Top="37" FontSize="12" Height="26"/>
+                        <Label Content="從" Canvas.Left="50" Canvas.Top="10" FontSize="12" Height="26"/>
+                        <Label Content="到" Canvas.Left="121" Canvas.Top="35" FontSize="12" Height="26"/>
+                        <Label Content="到" Canvas.Left="121" Canvas.Top="9" FontSize="12" Height="26"/>
+                        <Label Content="異常重寄" Canvas.Left="152" Canvas.Top="65" FontSize="12" Width="58"/>
+                        <ControlLib:NumericUpDown x:Name="NUP_ReSend" HorizontalAlignment="Center" MaxValue="60" VerticalAlignment="Center" Increment="1" FontSize="12" Width="38" MinValue="1" Canvas.Left="214" Canvas.Top="65" Height="22"/>
+                        <Label Content="時" Canvas.Left="125" Canvas.Top="65" FontSize="12" Height="26"/>
+                        <Label Content="分" Canvas.Left="254" Canvas.Top="65" FontSize="12" Height="26"/>
+                    </Canvas>
+                </GroupBox>
+                <GroupBox Header="收件信箱" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="647" FontSize="18" BorderBrush="#FF010102" Canvas.Left="315" Canvas.Top="70">
+                    <Canvas>
+                        <TextBox x:Name="TB_Mail1" Height="23" Canvas.Left="70" TextWrapping="Wrap" Text="" Canvas.Top="10" Width="200" FontSize="12"/>
+                        <Label Content="收件者1" Canvas.Left="5" Canvas.Top="10" FontSize="12" Width="63"/>
+                        <TextBox x:Name="TB_Mail2" Height="22" Canvas.Left="70" TextWrapping="Wrap" Text="" Canvas.Top="47" Width="200" FontSize="12"/>
+                        <Label Content="收件者2" Canvas.Left="5" Canvas.Top="47" FontSize="12" Width="63"/>
+                        <TextBox x:Name="TB_Mail3" Height="22" Canvas.Left="70" TextWrapping="Wrap" Text="" Canvas.Top="81" Width="200" FontSize="12"/>
+                        <Label Content="收件者3" Canvas.Left="5" Canvas.Top="81" FontSize="12" Width="63"/>
+                        <TextBox x:Name="TB_Mail4" Height="22" Canvas.Left="351" TextWrapping="Wrap" Text="" Canvas.Top="10" Width="200" FontSize="12"/>
+                        <Label Content="收件者4" Canvas.Left="286" Canvas.Top="10" FontSize="12" Width="63"/>
+                        <TextBox x:Name="TB_Mail5" Height="22" Canvas.Left="351" TextWrapping="Wrap" Text="" Canvas.Top="47" Width="200" FontSize="12"/>
+                        <Label Content="收件者5" Canvas.Left="287" Canvas.Top="47" FontSize="12" Width="62"/>
+                    </Canvas>
+                </GroupBox>
+                <GroupBox Header="資料庫路徑" Height="70" Canvas.Left="10" Width="954" BorderBrush="Black" Canvas.Top="0">
+                    <Canvas>
+                        <TextBox x:Name="TB_Path" Height="26" Canvas.Left="11" TextWrapping="Wrap" Canvas.Top="10" Width="873" FontSize="12" IsEnabled="False" Background="LightYellow"/>
+                        <Button x:Name="Btn_Path" Content=".." Canvas.Left="901" Canvas.Top="10" Width="27" FontSize="12" Height="23" HorizontalAlignment="Center" Click="Btn_Path_Click"/>
+                    </Canvas>
+                </GroupBox>
+                <Button x:Name="Btn_Save" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="40" Click="Btn_Save_Click" BorderBrush="{x:Null}" Canvas.Left="901" Canvas.Top="232">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Image/save_file.png"/>
+                    </Button.Background>
+                </Button>
+                <Label Content="儲存設定" Canvas.Left="890" Canvas.Top="283" RenderTransformOrigin="2.911,0.695" FontSize="14"/>
+                <TextBox x:Name="TB_Fahrenheit_Set" Height="24" Canvas.Left="718" Canvas.Top="244" Width="78" FontSize="12" IsEnabled="False" Background="LightYellow" Visibility="Hidden" />
+                <GroupBox x:Name="GB_Hidden" Header="隱藏" HorizontalAlignment="Left" Height="108" VerticalAlignment="Top" Width="217" FontSize="18" BorderBrush="Black" Canvas.Left="670" Canvas.Top="206">
+                    <Canvas>
+                        <ProgressBar x:Name="PBar_Time" Height="26" Canvas.Left="8" Canvas.Top="10" Width="22"/>
+                        <Image Height="29" Canvas.Left="76" Canvas.Top="6" Width="30" Source="Image/Time.png" RenderTransformOrigin="-20.167,0.662"/>
+                        <TextBox x:Name="TB_IP" Height="24" Canvas.Left="7" Width="18" FontSize="12" IsEnabled="False" Canvas.Top="44"/>
+                        <TextBox x:Name="TB_Humidity" Height="24" Canvas.Left="34" Width="18" FontSize="12" IsEnabled="False" Canvas.Top="44"/>
+                        <TextBox x:Name="TB_Celsius" Height="24" Canvas.Left="58" Width="17" FontSize="12" IsEnabled="False" RenderTransformOrigin="0.407,-0.667" Canvas.Top="44"/>
+                        <TextBox x:Name="TB_Port" TextWrapping="Wrap" Text="502" FontSize="12" Height="23" Canvas.Left="116" Canvas.Top="14" Width="32" RenderTransformOrigin="1.188,0.539"/>
+                        <TextBox x:Name="TB_H" TextWrapping="Wrap" FontSize="12" Height="22" Canvas.Left="80" Canvas.Top="46" Width="33" IsEnabled="False"  Background="LightYellow"/>
+                        <TextBox x:Name="TB_C" TextWrapping="Wrap" FontSize="12" Height="24" Canvas.Left="151" Canvas.Top="39" Width="15" IsEnabled="False"  Background="LightYellow"/>
+                        <TextBox x:Name="TB_Time" TextWrapping="Wrap" FontSize="12" Height="25" Canvas.Left="151" Canvas.Top="13" Width="21" IsEnabled="False"  Background="LightYellow"/>
+                        <TextBox x:Name="TB_Status" Height="16" Canvas.Left="45" TextWrapping="Wrap" Text="" Canvas.Top="16" Width="18" IsEnabled="False" FontSize="12" Background="LightYellow"/>
+                        <Button x:Name="Btn_Win" Content="-" Canvas.Left="118" Canvas.Top="43" Width="29" Height="25" Click="Btn_Win_Click"/>
+                        <Label x:Name="LB_Time" Content="Time" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Canvas.Left="176" Canvas.Top="39" Height="25"/>
+                    </Canvas>
+                </GroupBox>
+            </Canvas>
+        </GroupBox>
+        <GroupBox Header="選擇設備" HorizontalAlignment="Left" Height="66" Margin="9,4,0,0" VerticalAlignment="Top" Width="389" FontSize="18" BorderBrush="Black">
+            <Canvas>
+                <Label Content="設備名稱：" Canvas.Left="7" Canvas.Top="7" FontSize="12" Width="66"/>
+                <ComboBox x:Name="CB_IP" Canvas.Left="76" Canvas.Top="7" Width="255" Height="22" SelectedIndex="0" FontSize="12" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="2.438,0.827" SelectionChanged="CB_IP_SelectionChanged"/>
+            </Canvas>
+        </GroupBox>
+        <Canvas HorizontalAlignment="Left" Height="134" Margin="756,10,0,0" VerticalAlignment="Top" Width="233">
+            <Button x:Name="Btn_A" Content="" Click="Btn_A_Click" BorderBrush="{x:Null}" Height="120" Canvas.Left="10" Canvas.Top="4" Width="218">
+                <Button.Background>
+                    <ImageBrush ImageSource="Image/ibase_logo_web.png"/>
+                </Button.Background>
+            </Button>
+        </Canvas>
+        <TabControl HorizontalAlignment="Left" Height="226" Margin="13,496,0,0" VerticalAlignment="Top" Width="977">
+            <TabItem Header="紀錄">
+                <GroupBox Header="" Margin="-6,0,0.2,1.4">
+                    <Canvas Margin="0,0,-5.6,1.6">
+                        <Label Content="日期(起)：" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="63" Canvas.Left="9" Canvas.Top="12" FontSize="12"/>
+                        <Label Content="日期(迄)：" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="63" Canvas.Left="9" Canvas.Top="53" FontSize="12"/>
+                        <DatePicker x:Name="DP_Start" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="136" Canvas.Left="73" Canvas.Top="13" FontSize="12"/>
+                        <DatePicker x:Name="DP_End" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="137" Canvas.Left="73" Canvas.Top="53" FontSize="12"/>
+                        <Button x:Name="Btn_Query" Content="" Canvas.Left="229" Canvas.Top="17" Width="55" BorderBrush="{x:Null}" Height="55" Click="Btn_Query_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Image/search.png"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="Btn_Excel" Content="" Canvas.Left="294" Width="56" BorderBrush="{x:Null}" Height="55" Click="Btn_Excel_Click" Canvas.Top="14" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="Image/excel-icon-transparent-7.png"/>
+                            </Button.Background>
+                        </Button>
+                        <Label Content="查詢" Canvas.Left="238" Canvas.Top="81" RenderTransformOrigin="2.911,0.695" FontSize="14"/>
+                        <Label Content="匯出" Canvas.Left="302" Canvas.Top="80" RenderTransformOrigin="2.911,0.695" FontSize="14"/>
+                        <DataGrid CanUserAddRows="False" x:Name="DG_LOG" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="158" VerticalAlignment="Top" Width="608" AutoGenerateColumns="False" Margin="0" Canvas.Left="354" Canvas.Top="3" FontSize="12" SelectionUnit="Cell" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding TIME}" Header="紀錄日期" IsReadOnly="True" />
+                                <DataGridTextColumn Binding="{Binding SITE}"  Header="紀錄類型" IsReadOnly="True" />
+                                <DataGridTextColumn Binding="{Binding NAME}" Header="設備名稱" IsReadOnly="True" />
+                                <DataGridTextColumn Binding="{Binding Humidity}"  Header="濕度" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding Celsius}"  Header="溫度" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding Message}"  Header="設定範圍" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBox x:Name="TB_NAME_Search" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" Canvas.Left="74" Canvas.Top="86"/>
+                        <Label Content="設備名稱：" Canvas.Left="4" Canvas.Top="86" FontSize="12" Width="65"/>
+                        <ComboBox x:Name="CB_SITE" Canvas.Left="75" Canvas.Top="119" Width="133" Height="22" SelectedIndex="0" FontSize="12" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="2.438,0.827"/>
+                        <Label Content="紀錄類型：" Canvas.Left="4" Canvas.Top="115" FontSize="12" Width="69"/>
+                    </Canvas>
+                </GroupBox>
+            </TabItem>
+            <TabItem Header="設定">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="" Margin="-6,0,0.2,1.4">
+                        <Canvas Margin="0,0,-5.6,1.6">
+                            <Label Content="日期(起)：" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="63" Canvas.Left="9" Canvas.Top="12" FontSize="12"/>
+                            <Label Content="日期(迄)：" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="63" Canvas.Left="9" Canvas.Top="53" FontSize="12"/>
+                            <DatePicker x:Name="DP_Start1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="136" Canvas.Left="73" Canvas.Top="13" FontSize="12"/>
+                            <DatePicker x:Name="DP_End1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="137" Canvas.Left="73" Canvas.Top="53" FontSize="12"/>
+                            <Button x:Name="Btn_Query1" Content="" Canvas.Left="229" Canvas.Top="17" Width="55" BorderBrush="{x:Null}" Height="55" Click="Btn_Query1_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Image/search.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Button x:Name="Btn_Excel1" Content="" Canvas.Left="294" Width="56" BorderBrush="{x:Null}" Height="55" Click="Btn_Excel1_Click" Canvas.Top="14" >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Image/excel-icon-transparent-7.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Label Content="查詢" Canvas.Left="238" Canvas.Top="81" RenderTransformOrigin="2.911,0.695" FontSize="14"/>
+                            <Label Content="匯出" Canvas.Left="302" Canvas.Top="80" RenderTransformOrigin="2.911,0.695" FontSize="14"/>
+                            <DataGrid CanUserAddRows="False" x:Name="DG_SET" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="158" VerticalAlignment="Top" Width="608" AutoGenerateColumns="False" Margin="0" Canvas.Left="354" Canvas.Top="3" FontSize="12" SelectionUnit="Cell" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding TIME}" Header="設定日期" IsReadOnly="True" />
+                                    <DataGridTextColumn Binding="{Binding IpAddress}"  Header="設備IP" IsReadOnly="True" />
+                                    <DataGridTextColumn Binding="{Binding NAME}" Header="設備名稱" IsReadOnly="True" />
+                                    <DataGridTextColumn Binding="{Binding Mail}"  Header="收件者清單" IsReadOnly="True"/>
+                                    <DataGridTextColumn Binding="{Binding Humidity}"  Header="濕度設定" IsReadOnly="True"/>
+                                    <DataGridTextColumn Binding="{Binding Celsius}"  Header="溫度設定" IsReadOnly="True"/>
+                                    <DataGridTextColumn Binding="{Binding Hour}"  Header="儲存間隔(時)" IsReadOnly="True"/>
+                                    <DataGridTextColumn Binding="{Binding ReSend}"  Header="警示異常重寄(分)" IsReadOnly="True"/>
+                                    <DataGridTextColumn Binding="{Binding ReConn}"  Header="連線異常重寄(分)" IsReadOnly="True"/>
+                                    <DataGridTextColumn Binding="{Binding Path}"  Header="資料庫路徑" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <TextBox x:Name="TB_NAME_Search1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" Canvas.Left="74" Canvas.Top="86"/>
+                            <Label Content="設備名稱：" Canvas.Left="4" Canvas.Top="86" FontSize="12" Width="64"/>
+                        </Canvas>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="程式">
+                <Canvas >
+                    <ListBox x:Name="LB_Message" Height="190" Canvas.Left="2" Canvas.Top="2" Width="962" FontSize="14"/>
+                </Canvas>
+            </TabItem>
+        </TabControl>
+        <GroupBox Header="連線狀態" HorizontalAlignment="Left" Height="145" Margin="409,3,0,0" VerticalAlignment="Top" Width="153" BorderBrush="Black" >
+            <Canvas >
+                <Label Content="異常重寄" Height="25" Canvas.Left="6" Canvas.Top="91" Width="58"/>
+                <ControlLib:NumericUpDown x:Name="NUP_ReConn" HorizontalAlignment="Center" MaxValue="60" VerticalAlignment="Center" Increment="1" Width="38" MinValue="1" Height="22" Canvas.Left="67" Canvas.Top="91"/>
+                <Label Content="分" Height="26" Canvas.Left="107" Canvas.Top="91" Width="23"/>
+                <Image x:Name="IM_DL" Source="Image/DL-101-E.png" Opacity="0" Height="80" Canvas.Left="25" Canvas.Top="6" Width="86"/>
+            </Canvas>
+        </GroupBox>
+
+    </Grid>
+</Window>

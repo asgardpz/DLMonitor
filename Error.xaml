@@ -1,0 +1,18 @@
+﻿<Window x:Class="DLMonitor.Error"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DLMonitor"
+        mc:Ignorable="d"
+        Title="設備異常" Height="334.91" Width="486.637" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
+    <Grid>
+        <GroupBox Header="設備異常" HorizontalAlignment="Left" Height="283" Margin="9,13,0,0" VerticalAlignment="Top" Width="460" BorderBrush="Black" FontSize="18">
+            <Canvas >
+                <Image x:Name="IM_DL" Height="157" Canvas.Left="118" Canvas.Top="13" Width="181" Source="Image/DL-101-E.png" />
+                <Label x:Name="LB_Error" Content="Error" Canvas.Left="18" Canvas.Top="195" Width="422" Foreground="#FFFD0D0D"/>
+            </Canvas>
+        </GroupBox>
+
+    </Grid>
+</Window>
