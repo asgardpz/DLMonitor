@@ -1,9 +1,13 @@
 # DLMonitor
 
 透過Modbus連線，監控廠區的溫溼度計
+
 開發平台：VS2019
+
 程式語言：C# WPF
+
 資料庫：SQLite 3
+
 溫濕度計：DL-101-E
 
 - 主功能
@@ -21,5 +25,8 @@
 - [ ] 匯出功能：匯出紀錄成Excel
 
 操作說明和畫面如下：
-![1](https://github.com/asgardpz/APS/blob/master/SimpleSample/Resources/1.PNG)
+![1](https://github.com/asgardpz/DLMonitor/blob/master/Image/1.PNG)
+![1](https://github.com/asgardpz/DLMonitor/blob/master/Image/2.PNG)
+![1](https://github.com/asgardpz/DLMonitor/blob/master/Image/3.PNG)
+![1](https://github.com/asgardpz/DLMonitor/blob/master/Image/4.PNG)
 
